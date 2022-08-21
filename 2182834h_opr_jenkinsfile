@@ -1,1 +1,75 @@
+pipeline {
+agent {
+node {
+label 'master'
+}
+}
 
+options {
+buildDiscarder logRotator(
+daysToKeepStr: '15',
+numToKeepStr: '10'
+)
+}
+
+stages {
+stage('Opr_Stage_One_2182834h') {
+steps {
+sh """
+echo '<2182834h> Start of Operation Pipeline'
+"""
+}
+}
+
+stage('Opr_Stage_Two_2182834h') {
+steps {
+sh """
+docker commit 2182834h_websvr 2182834h_websvr_image
+echo '<2182834h> Backup websvr image created'
+"""
+}
+}
+
+stage('Opr_Stage_Three_2182834h') {
+steps {
+input('<2182834h> Roll out new update to Prod Web?')
+}
+}
+
+stage('Opr_Stage_Four_2182834h') {
+when {
+not {
+branch "<2182834h> Update Operation Aborted"
+}
+}
+steps {
+sh """#!/bin/bash
+targets='2182834h_websvr';
+echo 'Processing: Targets - \$targets';
+locate_script='/testdir/clone/operate-repo/2182834h_script';
+echo 'Processing: Script - \$locate_script';
+docker cp \$locate_script \$targets://\$locate_script;
+echo 'Processing: Running \$locate_script in \$targets';
+bolt script run \$locate_script -t \$targets -u boltadm -p password --no-host-key-check --run-as root;
+echo '<2182834h> Update Operation Completed'
+"""
+}
+}
+
+stage('Opr_Stage_Five_2182834h') {
+steps {
+sh """
+echo '<2182834h> Production website is tested o.k.'
+"""
+}
+}
+
+stage('Opr_Stage_Six_2182834h') {
+steps {
+sh """
+echo '<2182834h> Production website is updated successfully'
+"""
+}
+}
+}
+}
