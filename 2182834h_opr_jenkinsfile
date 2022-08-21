@@ -24,7 +24,6 @@ echo '<2182834h> Start of Operation Pipeline'
 stage('Opr_Stage_Two_2182834h') {
 steps {
 sh """
-docker rm -f 2182834h_websvr
 docker commit 2182834h_websvr 2182834h_websvr_image
 echo '<2182834h> Backup websvr image created'
 """
