@@ -4,7 +4,7 @@ puppet resource package apache2 ensure=present
 puppet resource service apache2 ensure=running
 puppet resource file /testdir ensure=directory
 puppet resource file /testdir/clone ensure=directory
-rm -rfv /testdir/clone/operate-repo
-cd /testdir/clone
+rm -rfv /testdir/work/operate-repo
+cd /testdir/work
 git clone https://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@github.com/jermynchanjy/operate-repo.git
-cp -pv /testdir/clone/operate-repo/index.html /var/www/html
+cp -pv /testdir/work/operate-repo/index.html /var/www/html
