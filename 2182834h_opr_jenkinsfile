@@ -46,7 +46,7 @@ steps {
 sh """#!/bin/bash
 targets='2182834h_websvr';
 echo 'Processing: Targets - \$targets';
-locate_script='/testdir/clone/operate-repo/2182834h_script';
+locate_script='/testdir/work/operate-repo/2182834h_script';
 echo 'Processing: Script - \$locate_script';
 docker cp \$locate_script \$targets://\$locate_script;
 echo 'Processing: Running \$locate_script in \$targets';
